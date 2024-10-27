@@ -1,0 +1,34 @@
+<%- include("./../partials/header.ejs") %>
+
+
+<main class="main">
+    <form action="/design-label" method="post" enctype="multipart/form-data">
+        <h1>Design a label</h1>
+        <h2>You have choosen design: <%= locals.design %></h2>
+        <textarea class="text-area" name="labelText" id="labelText" rows="10" cols="50" placeholder="Enter your label text here"></textarea><br>
+        <label for="images">Choose images:</label><br>
+        <input type="file" id="images" name="images" accept="image/*" multiple><br>
+        <input hidden name="design" value="<%= locals.design %>">
+
+        <audio-recorder>
+        </audio-recorder>
+        <i class=""></i>
+        <h2>Visible Icons:</h2>
+    <div class="container-row">
+        <input type="checkbox" max="3" name="icons" value="fa-2x fa-solid fa-wine-glass-empty" id="champagne-glasses">
+    <i class="fa-2x fa-solid checkbox fa-wine-glass-empty"></i><br>
+
+
+    <input type="checkbox" name="icons" value="fa-2x fa-solid fa-triangle-exclamation" id="car">
+    <i class="fa-2x checkbox fa-solid fa-triangle-exclamation"></i><br>
+        
+    <input type="checkbox" name="icons" value="fa-2x fa-solid fa-weight-hanging" id="car">
+    <i class="fa-2x checkbox fa-solid fa-weight-hanging"></i><br>
+    </div><br>
+    <label for="private">Sett label to private</label>
+    <input type="checkbox" name="private" id="private" value=1><br>
+        <button type="submit">Create</button>
+    </form>
+</main>
+
+<%- include("./../partials/footer.ejs") %>

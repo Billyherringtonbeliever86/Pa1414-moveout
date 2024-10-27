@@ -1,0 +1,12 @@
+<%- include("./../partials/header.ejs") %>
+
+
+<main class="main">
+    <% if (locals.message) { %>
+        <div class="flash-message center-margin">
+            <h2><%= locals.message %> <%= locals.code %></h2>
+        </div>
+    <% } %>
+</main>
+
+<%- include("./../partials/footer.ejs") %>

@@ -1,0 +1,24 @@
+
+<%- include("./../partials/header.ejs") %>
+<main class="main">
+    <h1> Sign up </h1>
+    <div class="container-float left">
+        <div class="container-column">
+            <form action="signup" method="POST" class="login-form">
+                <label>Email</label>
+                    <input name="email" type="email" required="required"></input>
+
+                <label>Password</label>
+                    <input name="password" minlength="6" maxlength="20" type="password" required="required"></input>
+                
+                <button action="submit" value="signup">Sign up</button>
+            </form>
+        </div>
+        <% if (locals.session.flashMessage) { %>
+            <div class="flash-message">
+                <h2><%= locals.session.flashMessage %></h2>
+            </div>
+        <% } %>
+    </div>
+</main>
+<%- include("./../partials/footer.ejs") %>

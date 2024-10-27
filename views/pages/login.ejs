@@ -1,0 +1,36 @@
+<%- include("./../partials/header.ejs") %>
+<main class="main">
+    <h1>LogIn</h1> 
+    <div class="container-float left">
+        <div class="container-column">
+            <form action="/login" method="POST" class="login-form">
+                <label>Email</label>
+                <input name="email" type="email" required="required"></input>
+
+                <label>Password</label>
+                <input name="password" type="password" required="required"></input>
+                <button type="submit">Login</button>
+            </form>
+
+            <h3>No account?</h3>
+            <form action="/signup" method="GET" class="login-form">
+                <button type="submit">Sign Up</button>
+            </form>
+            <!-- <h1>Sign in with Gmail</h1>
+     
+            <div id="g_id_onload" data-client_id="316835757852-f3n4u5tei5818g1abnrlj79vf3saimr9.apps.googleusercontent.com" data-callback="onSignIn"></div>
+            <div class="g_id_signin" data-type="standard"></div>
+            <%= locals.googleId %> -->
+        </div>
+        <% if (locals.session.flashMessage) { %>
+            <div class="flash-message">
+                <h2><%= locals.session.flashMessage %></h2>
+            </div>
+        <% } %>
+       
+    </div>
+    <script src="/javascripts/google.js"></script>
+</main>
+
+
+<%- include("./../partials/footer.ejs") %>

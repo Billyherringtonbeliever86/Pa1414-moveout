@@ -1,0 +1,14 @@
+<%- include("./../partials/header.ejs") %>
+
+
+<main class="main">
+    <h2>Write an marketing email</h2>
+    <form action="/marketing-email" method="POST">
+        <label for="subject">Subject</label> <br>
+        <input type="text" name="subject" id="subject" required="required"> <br>
+        <textarea class="text-area"  name="html" id="labelText" rows="10" cols="50" placeholder="Enter Html"></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+</main>
+
+<%- include("./../partials/footer.ejs") %>

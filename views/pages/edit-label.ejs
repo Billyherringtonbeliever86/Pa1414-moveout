@@ -1,0 +1,63 @@
+<%- include("./../partials/header.ejs") %>
+
+
+<main class="main">
+    <form action="/edit-label" method="post" enctype="multipart/form-data">
+        <h1>Design a label</h1>
+        <h2>You have choosen design: <%= label.design %></h2> <br>
+        <h2>Change design: </h2><br>
+        <input type="number" max="3" min="1" name="design" value="<%= label.design %>"> <br>
+
+        <textarea class="text-area" name="labelText" id="labelText" rows="10" cols="50"><%= label.text %></textarea><br>
+        <label for="images">Choose images:</label><br>
+        
+        <input hidden name="labelId" value="<%= label.id %>">
+
+        <audio-recorder>
+        </audio-recorder>
+        <% if (label.audio_name) { %> 
+            <h2>Current audio</h2>
+            <audio controls class="center-margin">
+                <source src="/audio/<%= label.audio_name %>" type="audio/wav">
+                Your browser does not support the audio tag.
+                </audio><br>
+            <% } else { %>
+                <p class="center-margin">No audio file available for this label.</p>
+            <% } %>
+            <input type="file" id="images" name="images" accept="image/*" multiple><br>
+        <h2>Current images: </h2> <br>
+        <div class="img-container">
+            <% for (const image of images) { %>
+                <img src="/images/uploads/<%= image.image_name %>" alt="image">
+            <% } %>
+            <% if (!images || images.length === 0) { %>
+                <p class="center-margin"> No pictures for this label</p>
+            <% } %>
+            </div>
+        
+        <h2>Current icons: </h2>
+        <div class="container-row-2">
+            <% 
+                const icons = label.icons.split(','); 
+                for (const icon of icons) { 
+                %>
+                    <i class="<%= icon %>"></i>
+                <% } %>
+        </div><br></br>  
+        <h2 style="margin-top: 10px;">Choose Icons:</h2>
+    <div class="container-row">
+        <input type="checkbox" name="icons" value="fa-2x fa-solid fa-wine-glass-empty" id="champagne-glasses">
+  
+    <i class="fa-2x fa-solid fa-wine-glass-empty checkbox"></i><br>
+
+    <input type="checkbox" name="icons" value="fa-2x fa-solid fa-triangle-exclamation" id="car">
+    <i class="fa-2x checkbox fa-solid fa-triangle-exclamation"></i><br>
+           
+    <input type="checkbox" name="icons" value="fa-2x fa-solid fa-weight-hanging" id="car">
+    <i class="fa-2x checkbox fa-solid fa-weight-hanging"></i><br>
+    </div>
+        <button type="submit">Edit</button>
+    </form>
+</main>
+
+<%- include("./../partials/footer.ejs") %>

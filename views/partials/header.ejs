@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A basic HTML document with meta data and header.">
+    <meta name="keywords" content="HTML, metadata, header, web development">
+    <script type="module" src="/javascripts/custom.js" defer></script>
+    <title><%= locals.title || 'My App' %></title>
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="google-signin-client_id" content="<%= locals.googleId %>">
+
+
+
+</head>
+<body>
+
+    <header>
+        <div class="container-row">
+            <h1>Project MoveOut</h1>
+            <% if (locals.session.email) { %>
+                <h3>Logged in: <%= session.email %></h3>
+            <% } %>
+        </div>
+        <p><%= locals.googleClientId %></p>
+        <nav class = "navbar">
+                <% if (!locals.session.email) { %>
+                    <a href="/signup">Sign up</a>
+                    <a href="/login">Login</a>
+                <% } %>
+                
+                <% if (locals.session.email) { %>
+                    <a href="/home">Home</a>
+                    <a href="/logout">Logout</a>
+                    <a href="/new-label">New Label</a>
+                    <a href="/all-labels">Labels</a>
+                <% } %>
+
+                <% if (locals.session.email == process.env.ADMIN_EMAIL) { %>
+                    <a href="/admin-view">All Accounts</a>
+                    <a href="/admin-all-labels">All Labels</a>
+                    <a href="/marketing-email">Marketing Email</a>
+                <% } %>
+                
+            
+        </nav>
+    </header>

@@ -1,0 +1,39 @@
+<%- include("./../partials/header.ejs") %>
+    
+<main class="main">
+   <h2>All users</h2>
+   <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>verifecation token</th>
+                <th>role</th>
+                <th>verified</th>
+                <th>deactivated</th>
+                <th>View Labels</th>
+                <th>Deactivate/Activate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const account of accounts) { %>
+                <tr>
+                    <td><%= account.id %></td>
+                    <td><%= account.email %></td>
+                    <td><%= account.verification_token %></td>
+                    <td><%= account.role %></td>
+                    <td><%= account.verified %></td>
+                    <td><%= account.deactivated %></td>
+                    <td><a href="/admin-view-labels?user=<%= account.email %>"> 
+                        <i class=" fa-2x fa-solid fa-eye"></i></a></td>
+                    <td><a href="/deactivate-account?user=<%= account.email %>"> 
+                        <i class=" fa-2x fa-solid fa-power-off"></i></a></td>
+                </tr>
+            <% } %>
+        </tbody>
+   </table>
+</main>
+
+
+
+<%- include("./../partials/footer.ejs") %>

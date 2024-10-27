@@ -1,0 +1,26 @@
+<%- include("./../partials/header.ejs") %>
+
+
+<main class="main">
+    <div class="label-container">
+        <% for (let i = 0; i < labels.length; i++) { %>
+            <a class="b-button" href="/view-label?labelId=<%= labels[i].id %>">
+                <div class="label l<%= labels[i].design %> small-size">
+                    <div class="container-row">
+                        
+                        <% 
+                        const icons = labels[i].icons.split(','); 
+                        for (const icon of icons) { 
+                        %>
+                            <i class="<%= icon %>"></i>
+                        <% } %>
+                    </div>
+                        <img class="qr-img" src="/qrcodes/<%=labels[i].qrname%>" alt="qr">
+                    
+                </div>
+            </a>
+        <% } %>
+    </div>
+</main>
+
+<%- include("./../partials/footer.ejs") %>

@@ -1,0 +1,40 @@
+<%- include("./../partials/header.ejs") %>
+    
+<main class="main">
+    <h2>Images for label <%= labelid %></h2>
+    <% if (images.length < 1) { %>
+      <h2>No images for this label</h2>
+    <% } else { %>
+      <table>
+         <thead>
+             <tr>
+                 <th>Id</th>
+                 <th>Email</th>
+                 <th>Owner Id</th>
+                 <th>Image File</th>
+                 <th>Label Id</th>
+                 <th>View Image</th>
+             </tr>
+         </thead>
+         <tbody>
+             <% for (const image of images) { %>
+                 <tr>
+                     <td><%= image.id %></td>
+                     <td><%= image.email %></td>
+                     <td><%= image.owner_id %></td>
+                     <td><%= image.image_name %></td>
+                     <td><%= image.label_id %></td>
+                     <td>
+                         <a href="/images/uploads/<%= image.image_name %>"> 
+                             <i class="fa-2x fa-solid fa-eye"></i>
+                         </a>
+                     </td>
+                 </tr>
+             <% } %>
+         </tbody>
+      </table>
+    <% } %>
+ </main>
+
+
+<%- include("./../partials/footer.ejs") %>
