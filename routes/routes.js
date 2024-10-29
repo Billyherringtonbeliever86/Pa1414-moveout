@@ -423,31 +423,6 @@ router.get('/logout', (req, res) => {
     return res.redirect("/login")
 });
 
-router.post('/google-auth', async (req, res) => {
-    const { id_token } = req.body;
-
-    try {
-        // Verify the ID token
-        const ticket = await client.verifyIdToken({
-            idToken: id_token,
-            audience: process.env.GOOGLE_CLIENT_ID // Specify the CLIENT_ID of the app that accesses the backend
-        });
-        const payload = ticket.getPayload();
-
-        // Unique user ID from Google
-        const userid = payload['sub']; // This is the unique identifier
-        const email = payload['email']; // User's email address
-
-        console.log(`User ID: ${userid}, Email: ${email}`);
-
-        // You can store the user in your database or perform any additional checks
-        res.json({ userid, email }); // Send response back to the client
-    } catch (error) {
-        console.error('Error verifying ID token:', error);
-        res.status(401).json({ error: 'Invalid token' });
-    }
-});
-
 
 router.get('/verify', async (req, res) => {
     const token = req.query.token;  

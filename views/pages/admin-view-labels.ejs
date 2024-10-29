@@ -1,53 +1,57 @@
 <%- include("./../partials/header.ejs") %>
     
 <main class="main">
-   <h2>All <%= labels[0].owner_email %>'s labels</h2>
-   <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Owner Id</th>
-                <th>Owner Email</th>
-                <th>Icons</th>
-                <th>Text</th>
-                <th>Audio File Name</th>
-                <th>Qr File Name</th>
-                <th>Image Id</th>
-                <th>Design</th>
-                <th>Is private</th>
-                <th>Private Key</th>
-                <th>View Label</th>
-                <th>View Images</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (const label of labels) { %>
+    <% if (labels && labels.length > 0) { %>
+        <h2>All <%= labels[0].owner_email %>'s labels</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><%= label.id %></td>
-                    <td><%= label.owner_id %></td>
-                    <td><%= label.owner_email %></td>
-                    <td> <% 
-                        const icons = label.icons.split(','); 
-                        for (const icon of icons) { 
-                        %>
-                            <i class="<%= icon %>"></i>
-                        <% } %>
-                    </td>
-                    <td><%= label.text %></td>
-                    <td><%= label.audio_name %></td>
-                    <td><%= label.qrname %></td>
-                    <td><%= label.image_id %></td>
-                    <td><%= label.design %></td>
-                    <td><%= label.private %></td>
-                    <td><%= label.private_key %></td>
-                    <td><a href="/view-label?labelId=<%= label.id %>"> 
-                        <i class=" fa-2x fa-solid fa-eye"></i></a></td>
-                    <td><a href="/admin-view-label-images?imageid=<%= label.image_id %>&labelid=<%= label.id %>"> 
-                        <i class=" fa-2x fa-solid fa-eye"></i></a></td>
+                    <th>Id</th>
+                    <th>Owner Id</th>
+                    <th>Owner Email</th>
+                    <th>Icons</th>
+                    <th>Text</th>
+                    <th>Audio File Name</th>
+                    <th>Qr File Name</th>
+                    <th>Image Id</th>
+                    <th>Design</th>
+                    <th>Is private</th>
+                    <th>Private Key</th>
+                    <th>View Label</th>
+                    <th>View Images</th>
                 </tr>
-            <% } %>
-        </tbody>
-   </table>
+            </thead>
+            <tbody>
+                <% for (const label of labels) { %>
+                    <tr>
+                        <td><%= label.id %></td>
+                        <td><%= label.owner_id %></td>
+                        <td><%= label.owner_email %></td>
+                        <td> 
+                            <% const icons = label.icons.split(','); 
+                            for (const icon of icons) { %>
+                                <i class="<%= icon %>"></i>
+                            <% } %>
+                        </td>
+                        <td><%= label.text %></td>
+                        <td><%= label.audio_name %></td>
+                        <td><%= label.qrname %></td>
+                        <td><%= label.image_id %></td>
+                        <td><%= label.design %></td>
+                        <td><%= label.private %></td>
+                        <td><%= label.private_key %></td>
+                        <td><a href="/view-label?labelId=<%= label.id %>"> 
+                            <i class="fa-2x fa-solid fa-eye"></i></a></td>
+                        <td><a href="/admin-view-label-images?imageid=<%= label.image_id %>&labelid=<%= label.id %>"> 
+                            <i class="fa-2x fa-solid fa-eye"></i></a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <h2>No labels</h2>
+        <% } %>
+    
 </main>
 
 

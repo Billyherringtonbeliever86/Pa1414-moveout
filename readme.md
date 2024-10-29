@@ -36,6 +36,10 @@ RUN mkdir -p /public/fontawesome/
 Download the library and extract the content into the newly created mapp
 https://fontawesome.com/download
 
+TEST
+    Stand in the root project folder
+    TYPE: npm test
+
 RUN
     Stand in the directory where app.js is
     type: node app.js
